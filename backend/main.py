@@ -22,6 +22,9 @@ def health_check():
 
 @app.get("/sets/{set_num}")
 def get_set(set_num: str):
+    if "-" not in set_num:
+        set_num = f"{set_num}-1"
+        
     try:
         set_data = get_set_data(set_num)
     except ValueError as e:
